@@ -7,7 +7,7 @@
 export const site = {
   name: "Michelle Buchi Okonicha",
   shortName: "Michelle",
-  title: "AI/ML engineer, researcher & community builder",
+  title: "AI/ML engineer, researcher & Technical builder",
   tagline:
     "I build production machine learning systems, research how AI agents behave on small devices, and teach the next generation of women in tech.",
   location: "UK",
