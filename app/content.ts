@@ -44,7 +44,7 @@ export const stats = [
 export const about = [
   "I'm a machine learning and AI engineer and a Google Developer Expert, currently completing an MSc in Artificial Intelligence and Data Science at the University of Hull, supervised by Dr. Julius Mboli.",
   "My research interests are LLM memory, goal drift, edge AI, quantisation, small language models, agents and agentic workflows, computer vision, and time series forecasting. My MSc project measures how the goals of small, quantised language-model agents drift over long recursive workflows on edge devices.",
-  "Before the MSc I was a Machine Learning and AI Engineer at PLATE, building the AI layer of a kitchen assistant app live on Google Play, and an AI Software Engineer at Aricah Technologies, where I shipped LLM-powered products to the web and Google Play. I started my career in software engineering as the first female software engineer at Landmark Africa. Today I also volunteer as an AI Engineer on evaluation and benchmarking with Crossing Party Lines, a US-based LLM benchmark project.",
+  "Before the MSc I was a Machine Learning and AI Engineer at PLATE, building the AI layer of a kitchen assistant app live on Google Play, and an AI Software Engineer at Aricah Technologies, where I shipped LLM-powered products to the web and Google Play. I started my career in software engineering as the first female software engineer at Landmark Africa. Alongside my MSc, I work part-time as an AI Engineer with Crossing Party Lines, building an LLM benchmark from US congressional bill data, from dataset review through to the evaluation pipeline and scoring.",
   "Outside the code, I'm a Women Techmakers Ambassador, Partnerships Lead for the AI Society at the University of Hull, a student ambassador at the University of Hull, and a volunteer tutor with PyGirls.",
 ];
 
@@ -115,6 +115,14 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    name: "CPL Bills Benchmark",
+    role: "Crossing Party Lines · part-time",
+    period: "2026",
+    summary:
+      "A closed-book LLM benchmark built from official US congressional bill data: 1,583 generated questions across 300 bills, gold answers independently re-verified from the raw XML, and abstention-aware scoring that separates real knowledge from guessing and measures hallucination rate.",
+    tags: ["LLM evaluation", "Benchmarking", "Hallucination rate", "Python", "Ollama"],
+  },
+  {
     name: "Upsidedown House app",
     role: "Landmark Africa",
     summary:
@@ -127,14 +135,6 @@ export const projects: Project[] = [
     summary:
       "A student portal and admin panel (Vue.js, PHP, Laravel, SQL) that automated workflows and reduced administrative bottlenecks.",
     tags: ["Vue.js", "Laravel", "SQL"],
-  },
-  {
-    name: "Hospitality operations platform",
-    role: "Execufy · contract",
-    period: "2024",
-    summary:
-      "Delivered a high-availability platform to go-live on schedule, with board collaboration and peer interaction modules. Cut server response times by 18% via Supabase/PostgreSQL tuning and code splitting.",
-    tags: ["Supabase", "PostgreSQL", "Performance"],
   },
   {
     name: "Frootaz & Belish",
@@ -162,11 +162,14 @@ export type Job = {
 
 export const experience: Job[] = [
   {
-    role: "AI Engineer, Evaluation and Benchmarking (Volunteer)",
+    role: "AI Engineer, Evaluation and Benchmarking",
     org: "Crossing Party Lines",
-    period: "Oct 2026 – Present",
+    period: "Oct 2026 – Present · Part-time",
     bullets: [
-      "Contribute to a US-based LLM benchmark project: reviewing candidate datasets for the benchmark, labelling benchmark items and reporting findings to the research team.",
+      "Building a closed-book LLM benchmark for a US nonprofit from official congressional bill data (GovInfo BILLSTATUS, 119th Congress): 1,583 questions across 300 bills, over six question templates from easy to hard.",
+      "Reviewed and labelled candidate datasets, then designed the question templates with balanced answers and majority-class baselines, so a score reflects real knowledge rather than lucky guessing.",
+      "Built an independent verification step that recomputes every gold answer from the raw XML, sharing no code with the question generator.",
+      "Built the evaluation harness and abstention-aware scoring (+1 correct, −1 wrong, 0 for \"I don't know\"), running models in abstain and forced modes and reporting precision, attempt rate and hallucination rate across Llama 3.1 8B, Qwen2.5 7B and DeepSeek.",
     ],
   },
   {
@@ -199,12 +202,6 @@ export const experience: Job[] = [
     bullets: [
       "Software engineer on Fugoku's enterprise cloud and AI infrastructure platform: servers, GPUs and private cloud, plus the Kaiju AI Gateway.",
     ],
-  },
-  {
-    role: "Software Engineer (Contract)",
-    org: "Execufy",
-    period: "2024",
-    bullets: ["Delivered a hospitality operations platform on schedule and reduced server response times by 18%."],
   },
   {
     role: "Software Engineer",
@@ -358,7 +355,7 @@ export const speakingTopics = [
 // What you're up to right now. Update whenever.
 export const currently = [
   "Writing my MSc dissertation on goal drift in small language model agents",
-  "Volunteering on LLM evaluation and benchmarking with Crossing Party Lines",
+  "Building an LLM benchmark on US congressional data with Crossing Party Lines",
   "Partnerships Lead for the University of Hull AI Society",
   "Tutoring with PyGirls",
   "Building AfroLearner in the open",
