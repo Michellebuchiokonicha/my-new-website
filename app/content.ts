@@ -10,7 +10,7 @@ export const site = {
   title: "AI/ML engineer, researcher & community builder",
   tagline:
     "I build production machine learning systems, research how AI agents behave on small devices, and teach the next generation of women in tech.",
-  location: "Kingston upon Hull, UK",
+  location: "UK",
   // Used for the sitemap, RSS feed and link previews. Set NEXT_PUBLIC_SITE_URL in Vercel once you
   // have your own domain; until then Vercel's production URL (*.vercel.app) is used automatically.
   url:

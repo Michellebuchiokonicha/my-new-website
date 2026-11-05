@@ -156,11 +156,7 @@ export default async function Home() {
             <div className="px absolute -left-3 top-6 sm:-left-8" style={{ ["--px" as string]: "18" }}>
               <div className="pop" style={{ ["--d" as string]: "900ms" }}>
                 <div className="wobble flex h-28 w-28 items-center justify-center rounded-full border-2 border-foreground bg-mustard p-3 text-center text-xs font-bold uppercase leading-tight text-ink sm:h-32 sm:w-32">
-                  Build
-                  <br />
-                  Speak
-                  <br />
-                  Write
+                  Build, speak, write
                 </div>
               </div>
             </div>
