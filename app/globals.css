@@ -1,0 +1,455 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────
+   Design tokens. Light = warm paper (default). Dark = near-black.
+   Change colours here and the whole site follows.
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --background: #f3ebdd;
+  --foreground: #1b1a17;
+  --muted: #5c574e;
+  --line: #d8cbb2;
+  --card: #fbf6ea;
+  --paper2: #e3d6be;
+  --accent: #bc361c; /* tomato */
+  --accent-2: #2547d0; /* cobalt */
+  --mustard: #f2b632;
+  --accent-soft: #f5ddd2;
+  --on-accent: #ffffff;
+  --on-accent2: #ffffff;
+  --ink: #1b1a17; /* always dark, for text on mustard */
+  --inkblock: #1b1a17;
+  --on-inkblock: #f3ebdd;
+  --footer-bg: #1b1a17;
+  --footer-fg: #f3ebdd;
+  --footer-muted: #bdb5a4;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background: #14130f;
+  --foreground: #f3ebdd;
+  --muted: #b3aa97;
+  --line: #34312a;
+  --card: #1d1b16;
+  --paper2: #2a2720;
+  --accent: #ff7a59;
+  --accent-2: #93a6ff;
+  --accent-soft: #2e1c16;
+  --on-accent: #1b1a17;
+  --on-accent2: #14130f;
+  --inkblock: #f3ebdd;
+  --on-inkblock: #1b1a17;
+  --footer-bg: #0b0a08;
+  --footer-fg: #f3ebdd;
+  --footer-muted: #a39b89;
+  color-scheme: dark;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-paper2: var(--paper2);
+  --color-accent: var(--accent);
+  --color-accent2: var(--accent-2);
+  --color-mustard: var(--mustard);
+  --color-accentsoft: var(--accent-soft);
+  --color-onaccent: var(--on-accent);
+  --color-onaccent2: var(--on-accent2);
+  --color-ink: var(--ink);
+  --color-inkblock: var(--inkblock);
+  --color-oninkblock: var(--on-inkblock);
+  --color-footerbg: var(--footer-bg);
+  --color-footerfg: var(--footer-fg);
+  --color-footermuted: var(--footer-muted);
+  --font-sans: "DM Sans Variable", system-ui, sans-serif;
+  --font-serif: "DM Serif Display", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "DM Sans Variable", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 10px 16px;
+  border-radius: 999px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ───────────── Small reusable pieces ───────────── */
+.gradient-text {
+  color: var(--accent);
+}
+
+/* underline that draws itself on hover */
+.ulink {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ulink:hover,
+.ulink:focus-visible {
+  background-size: 100% 2px;
+}
+
+.btn-lift {
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.2s, filter 0.2s;
+}
+.btn-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 -2px color-mix(in srgb, var(--foreground) 85%, transparent);
+}
+.btn-lift:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ───────────── Animations ───────────── */
+@keyframes rise {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.84) rotate(var(--r0, -6deg));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(var(--r1, 0deg));
+  }
+}
+@keyframes wobble {
+  from {
+    transform: rotate(-11deg) translateY(0);
+  }
+  to {
+    transform: rotate(-5deg) translateY(-9px);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.rise {
+  display: block;
+  transform: translateY(108%);
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+.pop {
+  opacity: 0;
+  animation: pop 0.9s cubic-bezier(0.2, 0.9, 0.25, 1.15) forwards;
+  animation-delay: var(--d, 0ms);
+}
+.wobble {
+  animation: wobble 4.5s ease-in-out infinite alternate;
+}
+.spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+/* hero parallax layers (offset set from JS via --mx / --my, range -1..1) */
+.px {
+  transform: translate3d(calc(var(--mx, 0) * var(--px, 10) * 1px), calc(var(--my, 0) * var(--px, 10) * 1px), 0);
+  transition: transform 0.25s ease-out;
+}
+
+/* scrolling ticker / marquee */
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--speed, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* scroll reveal. Only hides things once JavaScript has confirmed it will reveal them. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms);
+}
+html.js [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+html.js [data-reveal="tilt"] {
+  transform: translateY(70px) rotate(0deg);
+}
+html.js [data-reveal="tilt"].in {
+  transform: rotate(var(--r, 0deg));
+}
+html.js [data-reveal="tilt"].in:hover {
+  transform: rotate(0deg) translateY(-8px);
+  transition-delay: 0ms;
+  transition-duration: 0.3s;
+}
+html.js [data-reveal="left"] {
+  transform: translateX(-40px);
+}
+html.js [data-reveal="left"].in {
+  transform: none;
+}
+
+/* top-of-page reading / scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  z-index: 60;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--p, 0));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .fade-up,
+  .pop {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .pop {
+    transform: rotate(var(--r1, 0deg));
+  }
+  .wobble,
+  .spin-slow,
+  .marquee-track {
+    animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
+  }
+  html.js [data-reveal],
+  html.js [data-reveal].in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html.js [data-reveal="tilt"],
+  html.js [data-reveal="tilt"].in {
+    transform: rotate(var(--r, 0deg));
+  }
+  .px {
+    transform: none;
+  }
+}
+
+/* ───────────── Article body (blog posts) ───────────── */
+.prose-lite {
+  font-size: 1.125rem;
+  line-height: 1.85;
+}
+.prose-lite > * + * {
+  margin-top: 1.3em;
+}
+.prose-lite > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 4.6em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+}
+.prose-lite h2 {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-top: 2.2em;
+}
+.prose-lite h3 {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  margin-top: 1.9em;
+}
+.prose-lite h4 {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-top: 1.8em;
+}
+.prose-lite a {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+.prose-lite ul,
+.prose-lite ol {
+  padding-left: 1.4em;
+}
+.prose-lite ul {
+  list-style: disc;
+}
+.prose-lite ol {
+  list-style: decimal;
+}
+.prose-lite li + li {
+  margin-top: 0.4em;
+}
+.prose-lite li::marker {
+  color: var(--accent);
+}
+.prose-lite blockquote {
+  border-left: 5px solid var(--mustard);
+  padding-left: 1.1em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4em;
+  line-height: 1.4;
+}
+.prose-lite hr {
+  border: 0;
+  height: 2px;
+  background: var(--foreground);
+  opacity: 0.8;
+  margin: 2.4em 0;
+}
+.prose-lite code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  background: var(--accent-soft);
+  padding: 0.15em 0.4em;
+  border-radius: 0.35em;
+}
+.prose-lite pre {
+  background: var(--card);
+  border: 2px solid var(--foreground);
+  border-radius: 1rem;
+  padding: 1.1rem 1.3rem;
+  overflow-x: auto;
+  box-shadow: 6px 6px 0 var(--foreground);
+}
+.prose-lite pre code {
+  background: none;
+  padding: 0;
+}
+.prose-lite img {
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--foreground);
+}
+.prose-lite table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.prose-lite th,
+.prose-lite td {
+  border: 2px solid var(--foreground);
+  padding: 0.5em 0.9em;
+  text-align: left;
+}
+.prose-lite th {
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+/* ───────────── Rich text editor (admin) ───────────── */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  opacity: 0.6;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid var(--accent-2);
+}
+.ProseMirror pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.ProseMirror > p:first-of-type::first-letter {
+  /* no drop cap while writing */
+  all: unset;
+}
+
+/* solid accent fill (buttons in admin etc.) */
+.gradient-bar {
+  background: var(--accent);
+  color: var(--on-accent);
+}
