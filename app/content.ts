@@ -9,7 +9,7 @@ export const site = {
   shortName: "Michelle",
   title: "AI/ML engineer, researcher & Technical builder",
   tagline:
-    "I build production machine learning systems, research how AI agents behave on small devices, and teach the next generation of women in tech.",
+    "I build production machine learning systems, research how AI agents behave on small devices, and teach the next generation of peeps in tech.",
   location: "UK",
   // Used for the sitemap, RSS feed and link previews. Set NEXT_PUBLIC_SITE_URL in Vercel once you
   // have your own domain; until then Vercel's production URL (*.vercel.app) is used automatically.
@@ -45,7 +45,7 @@ export const about = [
   "I'm a machine learning and AI engineer and a Google Developer Expert, currently completing an MSc in Artificial Intelligence and Data Science at the University of Hull, supervised by Dr. Julius Mboli.",
   "My research interests are LLM memory, goal drift, edge AI, quantisation, small language models, agents and agentic workflows, computer vision, and time series forecasting. My MSc project measures how the goals of small, quantised language-model agents drift over long recursive workflows on edge devices.",
   "Before the MSc I was a Machine Learning and AI Engineer at PLATE, building the AI layer of a kitchen assistant app live on Google Play, and an AI Software Engineer at Aricah Technologies, where I shipped LLM-powered products to the web and Google Play. I started my career in software engineering as the first female software engineer at Landmark Africa. Alongside my MSc, I work part-time as an AI Engineer with Crossing Party Lines, building an LLM benchmark from US congressional bill data, from dataset review through to the evaluation pipeline and scoring.",
-  "Outside the code, I'm a Women Techmakers Ambassador, Partnerships Lead for the AI Society at the University of Hull, a student ambassador at the University of Hull, and a volunteer tutor with PyGirls.",
+  "Outside the code, I'm a Women Techmakers Ambassador, Partnerships Lead for the AI Society at the University of Hull, a student ambassador at the University of Hull, and a trainer with PyGirls, teaching Python to girls aged 12 to 19.",
 ];
 
 export const skills = [
@@ -142,15 +142,6 @@ export const projects: Project[] = [
     summary: "Shipped food-logistics (Frootaz) and kilishi-delivery (Belish) applications.",
     tags: ["Food-tech", "Web & mobile"],
   },
-  {
-    name: "Fugoku",
-    role: "Software Engineer",
-    period: "2024 – 2025",
-    summary:
-      "Enterprise cloud and AI infrastructure platform: servers, GPUs and private cloud spun up in seconds on open standards, plus the Kaiju AI Gateway.",
-    tags: ["Cloud infrastructure", "AI/ML platform", "GPUs"],
-    href: "https://fugoku.com/",
-  },
 ];
 
 export type Job = {
@@ -193,14 +184,6 @@ export const experience: Job[] = [
       "Built Velarius, an LLM-powered learning platform for secondary school students, using LangChain to orchestrate RAG over OpenAI and Gemini models, with secure document indexing and context-grounded tests. 50+ downloads.",
       "Architected RAG pipelines using MongoDB Vector Search, improving context retrieval precision by 22%.",
       "Built FastAPI services to serve LLM features, handling context-window limits across user sessions.",
-    ],
-  },
-  {
-    role: "Software Engineer",
-    org: "Fugoku",
-    period: "2024 – 2025",
-    bullets: [
-      "Software engineer on Fugoku's enterprise cloud and AI infrastructure platform: servers, GPUs and private cloud, plus the Kaiju AI Gateway.",
     ],
   },
   {
@@ -329,7 +312,7 @@ export const community = {
     "Women Techmakers Ambassador",
     "Partnerships Lead, AI Society · University of Hull",
     "Student Ambassador, University of Hull",
-    "Volunteer tutor, PyGirls",
+    "Trainer, PyGirls",
   ],
 };
 
@@ -357,6 +340,6 @@ export const currently = [
   "Writing my MSc dissertation on goal drift in small language model agents",
   "Building an LLM benchmark on US congressional data with Crossing Party Lines",
   "Partnerships Lead for the University of Hull AI Society",
-  "Tutoring with PyGirls",
+  "Teaching Python to girls aged 12 to 19 as a PyGirls trainer",
   "Building AfroLearner in the open",
 ];
